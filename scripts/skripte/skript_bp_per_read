@@ -1,0 +1,12 @@
+for soj in 1 2 3 4 5; do
+
+R1=$(find "$soj" -maxdepth 1 -type f -name "*_1.fq" | head -n 1)
+R2=$(find "$soj" -maxdepth 1 -type f -name "*_2.fq" | head -n 1)
+L1=$(awk 'NR==2 {print length($0); exit}' "$R1")
+L2=$(awk 'NR==2 {print length($0); exit}' "$R2")
+echo -e "$soj\t$(basename "$R1")\t$(basename "$R2")\t$L1\t$L2" >> number_reads.tsv
+done
+
+
+
+
